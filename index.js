@@ -28,9 +28,9 @@ app.get("/", (req, res) => {
     res.send("cong hieu dep trai!");
 });
 
-app.get("/data", (req, res) => {
-    console.log("be calling");
-    res.send("data!");
+app.get("/data", async (req, res) => {
+    const colors = await Colors.find();
+    res.send(colors);
 });
 
 app.post("/scan-card", async (req, res) => {
@@ -74,7 +74,6 @@ app.post("/colors", async (req, res) => {
             });
             await newColor.save();
             await newDetailColor.save();
-            console.log("The color is created!");
             res.status(200).send(
                 "The color is created and appended successful!"
             );
@@ -97,7 +96,6 @@ app.get("/colors/quantity/:queryColor", async (req, res) => {
 
 app.get("/colors/quantity", async (req, res) => {
     const { color } = req.params;
-    console.log(color);
     const colors = await Colors.find({});
     const quantity = colors.reduce((total, color) => {
         return total + color.quantity;
