@@ -29,8 +29,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/data", async (req, res) => {
-    const colors = await Colors.find();
-    res.send(colors);
+    res.send({ text: "HELLO WORLD!" });
 });
 
 app.post("/scan-card", async (req, res) => {
