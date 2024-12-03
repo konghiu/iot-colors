@@ -3,8 +3,8 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-export default function () {
-    mongoose
+export default async function () {
+    await mongoose
         .connect(
             "mongodb+srv://conghieudev3104:abcd1234@db.p1jyv.mongodb.net?retryWrites=true&w=majority&appName=db"
         )
