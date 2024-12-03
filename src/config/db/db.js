@@ -10,7 +10,10 @@ export default async function () {
         .connect(
             "mongodb+srv://conghieudev3104:abcd1234@db.p1jyv.mongodb.net/?retryWrites=true&w=majority&appName=db"
         )
-        .then(() => console.log("connect success"))
+        .then(() => {
+            status = "alright";
+            console.log("connect success");
+        })
         .catch(() => {
             status = "error";
             console.log("connect failure");

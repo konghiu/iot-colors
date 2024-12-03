@@ -33,6 +33,11 @@ app.get("/data", async (req, res) => {
     res.send({ text: "HELLO WORLD!", status });
 });
 
+app.get("/value", async (req, res) => {
+    const colors = await Colors.find({});
+    res.send({ text: "HELLO WORLD!", status });
+});
+
 app.post("/scan-card", async (req, res) => {
     const cardId = req.body.cardId;
     try {
