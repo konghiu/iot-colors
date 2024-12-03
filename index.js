@@ -5,6 +5,7 @@ import Card from "./src/models/Card.js";
 import Colors from "./src/models/Colors.js";
 import DetailColor from "./src/models/DetailColor.js";
 import { Server } from "socket.io";
+import { status } from "./src/config/db/db.js";
 
 connectMongoDB();
 
@@ -29,7 +30,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/data", async (req, res) => {
-    res.send({ text: "HELLO WORLD!" });
+    res.send({ text: "HELLO WORLD!", status });
 });
 
 app.post("/scan-card", async (req, res) => {
