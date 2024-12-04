@@ -7,9 +7,7 @@ export let status = "ok";
 
 export default async function () {
     await mongoose
-        .connect(
-            "mongodb+srv://conghieudev3104:abcd1234@db.p1jyv.mongodb.net/?retryWrites=true&w=majority&appName=db"
-        )
+        .connect(process.env.MONGODB_URL)
         .then(() => {
             status = "alright";
             console.log("connect success");
