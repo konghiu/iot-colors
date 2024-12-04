@@ -5,8 +5,8 @@ dotenv.config();
 
 export let status = "ok";
 
-export default async function () {
-    await mongoose
+export default function () {
+    mongoose
         .connect(process.env.MONGODB_URL)
         .then(() => {
             status = "alright";
