@@ -5,15 +5,15 @@ dotenv.config();
 
 export let status = "ok";
 
-export default function () {
-    mongoose
-        .connect(process.env.MONGODB_URL)
-        .then(() => {
-            status = "alright";
-            console.log("connect success");
-        })
-        .catch(() => {
-            status = "error";
-            console.log("connect failure");
-        });
+async function connect() {
+    try {
+        await mongoose.connect(process.env.MONGODB_URL);
+        status = "alright";
+        console.log("connect successfull");
+    } catch (err) {
+        console.log("connect failure");
+        status = "error";
+    }
 }
+
+export default connect;
