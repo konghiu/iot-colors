@@ -10,13 +10,14 @@ connect();
 
 const app = express();
 
-app.use(
-    cors({
-        origin: ["https://konghiu.github.io/client-colors/"],
-        optionSuccessStatus: 200,
-        credentials: true,
-    })
-);
+app.use(cors());
+// app.use(
+//     cors({
+//         origin: ["https://konghiu.github.io/client-colors/"],
+//         optionSuccessStatus: 200,
+//         credentials: true,
+//     })
+// );
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
@@ -38,12 +39,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/data", async (req, res) => {
-    res.send({ text: "HELLO WORLD!", status });
-});
-
-app.get("/value", async (req, res) => {
-    const colors = await Colors.find({});
-    res.send({ text: "HELLO WORLD!", status });
+    res.json({ text: "HELLO WORLD!", status });
 });
 
 app.listen(8000, () => {
