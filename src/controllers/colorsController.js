@@ -15,8 +15,16 @@ const colorsController = {
         }
     },
     getColorDetails: async (req, res) => {
+        let { from, to } = req.query;
+        to = new Date(to);
+        to.setDate(to.getDate() + 1);
         try {
-            const colorDetails = await DetailColor.find({});
+            const colorDetails = await DetailColor.find({
+                time: {
+                    $gte: from,
+                    $lte: to,
+                },
+            }).populate("classified");
             res.status(200).send(colorDetails);
         } catch (err) {
             res.status(403).send({
@@ -60,6 +68,7 @@ const colorsController = {
             if (ExistColor) {
                 const newDetailColor = new DetailColor({
                     classified: ExistColor._id,
+                    time: new Date.now(),
                 });
                 ExistColor.quantity += 1;
                 await ExistColor.save();
@@ -69,6 +78,7 @@ const colorsController = {
                 const newColor = new Colors({ classify: color });
                 const newDetailColor = new DetailColor({
                     classified: newColor._id,
+                    time: new Date.now(),
                 });
                 await newColor.save();
                 await newDetailColor.save();

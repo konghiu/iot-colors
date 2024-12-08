@@ -6,7 +6,7 @@ colorsRouter.get("/", colorsController.getColors);
 colorsRouter.post("/", colorsController.postColor);
 colorsRouter.delete("/", colorsController.deleteDetailColors);
 
-colorsRouter.get("/detail", colorsController.getColorDetails);
+colorsRouter.get("/details", colorsController.getColorDetails);
 colorsRouter.delete("/detail", colorsController.deleteDetailColor);
 
 colorsRouter.get("/quantity", colorsController.getQuantityColors);
