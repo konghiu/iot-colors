@@ -68,7 +68,7 @@ const colorsController = {
             if (ExistColor) {
                 const newDetailColor = new DetailColor({
                     classified: ExistColor._id,
-                    time: new Date.now(),
+                    time: new Date(),
                 });
                 ExistColor.quantity += 1;
                 await ExistColor.save();
@@ -78,7 +78,7 @@ const colorsController = {
                 const newColor = new Colors({ classify: color });
                 const newDetailColor = new DetailColor({
                     classified: newColor._id,
-                    time: new Date.now(),
+                    time: new Date(),
                 });
                 await newColor.save();
                 await newDetailColor.save();
@@ -87,7 +87,7 @@ const colorsController = {
                 );
             }
         } catch (err) {
-            res.status(500).send("errors! in COLORs");
+            res.status(500).send(err.message);
         }
     },
 
