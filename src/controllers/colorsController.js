@@ -16,8 +16,6 @@ const colorsController = {
     },
     getColorDetails: async (req, res) => {
         let { from, to } = req.query;
-        to = new Date(to);
-        to.setDate(to.getDate() + 1);
         try {
             const colorDetails = await DetailColor.find({
                 time: {
